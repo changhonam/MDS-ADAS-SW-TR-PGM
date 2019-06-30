@@ -1,6 +1,6 @@
 # ARM 프로세서의 명령어2
 - ARM의 Load/Store Architecture
-    - memory to memory 데이터 처리 명령으 ㄹ지원하지 않음
+    - memory to memory 데이터 처리 명령을 지원하지 않음
     - 처리하고자 하는 **데이터는 무조건 레지스터로 이동**해야 한다.
     - 처리 절차
         1. 데이터를 메모리에서 레지스터로 이동
@@ -82,7 +82,7 @@ str r0, [r2], #4 @r1=0x30100000  0x30100064
 
 
 ## 2. Block Data Transfer
-- 하나의 멸령으로 메모리와 프로세서 레지스터 사이에 여러 개의 데이터를 옮기는 멸령
+- 하나의 멸령으로 메모리와 프로세서 레지스터 사이에 여러 개의 데이터를 옮기는 명령
 - Block Data Transfer의 응용
     - **Stack operation**
         - LDM/STM 이용하여 pop 또는 push 동작 구현
@@ -290,18 +290,18 @@ LDMFD sp!, {r4-r12, pc} @ load all the registers
 >    - opcode_2 : additional information 표시
 
 ### 1.1 ICache enable/disable 코드
-<libs.S 어셈블리어로 구현된 ICache enable/disable 코드>
+<libs.S 어셈블리어로 구현된 ICache enable/disable 코드>  
 ![](./img/image034.png)
 ![](./img/image035.png)
 
-<Control(Coprocessor) Register c1>
+<Control(Coprocessor) Register c1>  
 ![](./img/image026.png)
 - ARM Architecture Reference 문서 참조
 - Coprocessor register 중 c1이 가장 중요
 
-<이 외의 Control Register 주요 기능>
+<이 외의 Control Register 주요 기능>  
 ![](./img/image036.png)
-<c0 레지스터>
+<c0 레지스터>  
 ![](./img/image039.png)
 
 ### 1.2 Cache flush(invalidate) 코드
@@ -355,7 +355,7 @@ LDMFD sp!, {r4-r12, pc} @ load all the registers
     - TLB가 Virtual 어드레스에 대한 translation table entry를 가지고 있으면 access control logic이 access 가능을 판단
         - 접근이 허용되면 virtual address를 physical address로 변환 후 access
         - 접근의 허용이 안되면 CPU에 Abort 구동
-    - TLB에 virtual 어드레스에 대한 정보가 없으면 translation table walking logc에서 table 정보를 physical 메모리에서 읽어 TLB update
+    - TLB에 virtual 어드레스에 대한 정보가 없으면 translation table walking logic에서 table 정보를 physical 메모리에서 읽어 TLB update
 - Translation Table Walking Logic
     - TLB를 update하고 관리하는 기능을 가진 logic
 - Access Control Logic
@@ -363,13 +363,13 @@ LDMFD sp!, {r4-r12, pc} @ load all the registers
 ## 3. (정리) MMU 부분에서 꼭 기억할 것!
 1. 링커(Linker) 스크립트 파일에서의 주소 표현
 - 가상주소를 필요로하는 소프트웨어는 링커 스크립트 파일의 가상주소를 써서 실행한다.
-- 시작 주소가 30000000이 아니라 임의로 C0000000라는 주소로 입력해도 프로그램이 정상 실행 될까?
+- 시작 주소가 30000000이 아니라 임의로 C0000000라는 주소로 입력해도 프로그램이 정상 실행 될까?  
 ![](./img/image043.png)
-- Linker script 파일에 ORIGIN에 대입된 주소 값을 30000000이 아닌 C0000000으로 변환시켜 본다.
+- Linker script 파일에 ORIGIN에 대입된 주소 값을 30000000이 아닌 C0000000으로 변환시켜 본다.  
 ![](./img/image044.png)
 - 상식적으로 생각하면 Main에서 MMU_Init이 발생하기 전에는 물리주소로 실행되므로 가상주소 배치가 이루어지지 않은 상황에서 주소 체계가 꼬여 프로그램 실행이 잘 안될 것이라고 예상할 수 있다.
 - 정답 : 정상적으로 프로그램이 실행된다.
-- 이유는 ARM 프로세서는 분기를 할 때 상대주소로 분기를 하게 되므로 임의로 시작 주소를 변경해도 정상적으로 프로그램이 동작 되는 것이다.
+- 이유는 ARM 프로세서는 분기를 할 때 상대주소로 분기를 하게 되므로 임의로 시작 주소를 변경해도 정상적으로 프로그램이 동작 되는 것이다.  
 ![](./img/image045.png)
 
 2. 예외처리(Exception) 벡터 테이블

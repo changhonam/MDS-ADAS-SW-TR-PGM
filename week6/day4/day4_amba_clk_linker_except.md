@@ -38,14 +38,14 @@
 ![](./img/image013.png)
 ![](./img/image011.png)
 
-- Clock 변경 실습 (FCLK 600MHz)
+- Clock 변경 실습 (FCLK 600MHz)  
 ![](./img/image014.png)
 ![](./img/image016.png)
 
-- Clock 변경 실습2 (FCLK 800MHz)
+- Clock 변경 실습2 (FCLK 800MHz)  
 ![](./img/image018.png)
 
-- FCLK외 PCLK, HCLK 등에 대해 각각 설정 변경
+- FCLK외 PCLK, HCLK 등에 대해 각각 설정 변경  
 ![](./img/image019.png)
 
 # Power 관리
@@ -129,28 +129,28 @@
 ### 5.1 Linker 파일 분석
 - 개발할때는 제공받은 Linker script 파일을 두고 필요한 부분만 수정해서 쓴다. -> *깊이 알지말고 의미만 파악해라!*
 
-<Linker script 파일(.ld)>
+<Linker script 파일(.ld)>  
 ![](./img/image050.png)
 
-<인터럽트 주소 할당을 위한 임의의 섹션(.ld)>
+<인터럽트 주소 할당을 위한 임의의 섹션(.ld)>  
 ![](./img/image052.png)
 
-<.map 파일의 주소 값>
+<.map 파일의 주소 값>  
 ![](./img/image051.png)
 - .map 파일은 링커가 만든 리포트 파일(로그 파일)
 
-<어셈블리어의 Local label>
+<어셈블리어의 Local label>  
 ![](./img/image054.png)
 
 ### 5.2 stack 직접 관리
 
-<startup 코드, 메모리 컨트롤러 세팅>
+<startup 코드, 메모리 컨트롤러 세팅>  
 ![](./img/image057.png)
 
-<startup 코드 stack 할당 초기화>
+<startup 코드 stack 할당 초기화>  
 ![](./img/image055.png)
 
-<startup 코드 모드별 stack 크기 할당>
+<startup 코드 모드별 stack 크기 할당>  
 ![](./img/image056.png)
 
 
@@ -172,7 +172,7 @@
     - 코드 해독(decode)이 제대로 되지 않음
     - coprocessor에 전달하여 여기서도 처리 못해 reject가 나오면 발생
     - 부정적 예외 처리
-- Software Interrupt
+- Software Interrupt  
     ![](./img/image059.png)
     - 외부 전기신호로 인해 Interrupt가 걸리는 것이 아닌 SWI 명령어로 발생
     - SWI 명령어에 원하는 서비스 코드를 넣으면 시스템 호출이 되어 리눅스 커널이 원하는 요청을 실행시켜 준다.
@@ -199,9 +199,9 @@
 ![](./img/image059.png)
 
 - Exception Vector Table
-    - 각 Exception에 대해 Vector를 정의해놓은 테이블
+    - 각 Exception에 대해 Vector를 정의 해놓은 테이블
         - 각 Exception 별로 1 word 크기의 명령어 저장 공간을 가진다.
-    - 실제 Exception을 처리하기 위한 루틴으로 분기 할 수 있느 ㄴ명령으로 구성되어 있다. (Branch와 유사)
+    - 실제 Exception을 처리하기 위한 루틴으로 분기 할 수 있는 명령으로 구성되어 있다. (Branch와 유사)
         - <u>FIQ의 경우는 Vector Tabel의 맨 상위에 위치하여 분기명령 없이 처리루틴을 프로그램 할 수 있다.</u>
     - ARM은 기본적으로 0x00000000에 Vector Tabel을 둔다.
         - MMU 제어 프로그램에 의해 위치 변경 가능
@@ -216,30 +216,30 @@
 ## 3. Exception Handler
 
 ### 3.1 Data Abort 실습 (비정렬 Access 실행)
-- 비정렬 Access 코드 작성
+- 비정렬 Access 코드 작성  
 ![](./img/image038.png)
-- Abort 발생 결과
+- Abort 발생 결과  
 ![](./img/image039.png)
 - Abort 발생 process
 
 
 ### 3.2 Exception Handler 정의 방법!!
-- Startup code에서 각 exception mode의 handler가 정의된다.
+- Startup code에서 각 exception mode의 handler가 정의된다.  
 ![](./img/image061.png)
 
-- exception handler 들은 macro 함수를 통해 정의
+- exception handler 들은 macro 함수를 통해 정의  
 ![](./img/image042.png)
 
 - exception handler를 굳이 macro로 어렵게 구현해놓은 이유?(vector table에 바로 핸들러 주소를 연결해두지 않은 이유?)
     - 만약 ROM에 프로그램을 이식했을 때 핸들러 주소를 바로 연결해두는 식의 하드코딩을 하면 case 별로 동작을 달리하는(경우에 따라 abort 발생을 다르게 하는 등) 설정을 하지 못하게 된다.
-    - 기본적인 handler 시퀀스는 macro로 정의해놓고 세부 동작은 Main에서 Handler 주소로 연결하여 원하는 동작을 수행할 수 있도록 프로그래밍한다.
+    - 기본적인 handler 시퀀스는 macro로 정의해놓고 세부 동작은 Main에서 Handler 주소로 연결하여 원하는 동작을 수행할 수 있도록 프로그래밍한다.  
     ![](./img/image062.png)
 
-- 인터럽트 발생 sequence
+- 인터럽트 발생 sequence  
 ![](./img/image065.png)
-<interrupt group table>
+<interrupt group table>  
 ![](./img/image066.png)
-<다른 코딩 방법>
+<다른 코딩 방법>  
 ![](./img/image045.png)
 
 
@@ -247,12 +247,12 @@
 - 중요하지 않은 부분이다!!
 - 이유 : 인터럽트를 제외하고 리셋, abort 발생시 그 상태에서 멎어버리는 것이지 원래 상태로 되돌아갈 이유가 없기 때문
 - 증거
-- Exception 복귀 명령
+- Exception 복귀 명령  
 ![](./img/image046.png)
 
 ## FIQ를 이용하면 IRQ보다 빠른 이유?
-1. 파이프라인 파괴가 되는 것을 방지할 수 있다.
+1. 파이프라인 파괴가 되는 것을 방지할 수 있다.  
 ![](./img/image047.png)
 2. 우선순위(2)가 IRQ보다 높다.
-3. private한 레지스터(컨텍스트 저장/복원이 필요없는)가 5개 존재 (r8~r12)하므로 push/pop 동작이 필요 없다.
+3. private한 레지스터(컨텍스트 저장/복원이 필요없는)가 5개 존재 (r8~r12)하므로 push/pop 동작이 필요 없다.  
 ![](./img/image067.png)

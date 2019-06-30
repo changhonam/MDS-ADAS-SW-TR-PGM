@@ -35,9 +35,9 @@
     - Load/Store와 같은 메모리 참조 명령이나 Branch 명령에서는 모두 상대주소(Indirect Address)방식을 사용한다.
     
     ![](./img/image015.png)
-    - Immediat 상수는 32 비트 명령어 내에 표시된다. (32 비트 내의 값)
+    - Immediate 상수는 32 비트 명령어 내에 표시된다. (32 비트 내의 값)
     - <u>모든 ARM 명령어는 조건부 실행이 가능하다.</u>
-    - Load/Store Architecture 사용 (RISC 프로세서의 특징)
+    - Load/Store Architecture 사용 (RISC 프로세서의 특징)  
 ![](./img/image004.png)
 - 16 비트 Thumb 명령어
     - 8비트나 16비트와 같은 좁은 메모리 인터페이스에서 ARM 명령을 수행할 때 보다 성능이 우수
@@ -89,7 +89,7 @@ ADDEQ r0, r1, r2
 - Branch with Link(BL)명령
     1. 다음에 수행할 명령의 위치를 LR에 저장한다.
         = LR = PC-4
-    2. PC는 분기를 실행하기 위한 PC + offset 값을 갖는다.
+    2. PC는 분기를 실행하기 위한 PC + offset 값을 갖는다.  
     ![](./img/image016.png)
 - Subroutine에서 Return
     - LR에 저장된 주소를 PC에 옮긴다. (mov pc, lr)
@@ -124,7 +124,7 @@ MVN | Rd := 0xFFFFFFFF EOR Op2 | Move Negative register
         - 32 비트 상수를 명시하면 어셈블러가 자동으로 ror연산을 적용하여 변환
         ![](./img/image021.png)
 
-<u>**하지만 홀수개의 비트 이동을 해야할 수 밖에 없을 떈 컴파일 에러**</u>
+<u>**하지만 홀수개의 비트 이동을 해야할 수 밖에 없을 떈 컴파일 에러**</u>  
 ![](./img/image022.png)
 ![](./img/image023.png)
 ![](./img/image007.jpg)
@@ -152,7 +152,7 @@ MVN | Rd := 0xFFFFFFFF EOR Op2 | Move Negative register
 > C로는 구현이 불가하고 어셈블리어로만 실행할 수 있는 동작이므로 레지스터의 안전성이 더욱 보장된다.
 
 - MRS : Move PSR to Register `ex) MRS r0, cpsr` : cpsr을 읽기 명령
-- MSR : Move Register to PSR `ex) MSR cpsr, r0` : cpsr에 쓰기 명령
+- MSR : Move Register to PSR `ex) MSR cpsr, r0` : cpsr에 쓰기 명령  
 ![](./img/image035.jpg)
 - PSR의 특정 부분의 데이터만 추출하여 전송할 수 있다.
 ```c
