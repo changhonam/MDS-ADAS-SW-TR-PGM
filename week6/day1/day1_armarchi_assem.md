@@ -127,6 +127,10 @@ Operating Mode는 현재 프로세서가 어떤 권한을 가지고 어떤 종�
 4. **Operating 모드의 변환과 레지스터**
 
 ![](./img/image006.jpg)
+
+<Excetption 발생시 동작 (operating 모드 변환의 일종)>  
+![](./img/image060.png)
+
 #### 인터럽트 발생시에 Operating 모드 변환 과정
 1. User의 CPSR 값을 SPSR에 복사 (user 모드의 mode bit가 저장)
 2. IRQ 레지스터의 CPSR 변경

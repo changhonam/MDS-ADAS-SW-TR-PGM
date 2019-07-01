@@ -173,7 +173,7 @@
     - coprocessor에 전달하여 여기서도 처리 못해 reject가 나오면 발생
     - 부정적 예외 처리
 - Software Interrupt  
-    ![](./img/image059.png)
+    ![](./img/image035.png)
     - 외부 전기신호로 인해 Interrupt가 걸리는 것이 아닌 SWI 명령어로 발생
     - SWI 명령어에 원하는 서비스 코드를 넣으면 시스템 호출이 되어 리눅스 커널이 원하는 요청을 실행시켜 준다.
     - S/W Interrupt를 실행하면 User모드에서 Supervisor(SVC)모드로 변환된다.
@@ -202,8 +202,8 @@
     - 각 Exception에 대해 Vector를 정의 해놓은 테이블
         - 각 Exception 별로 1 word 크기의 명령어 저장 공간을 가진다.
     - 실제 Exception을 처리하기 위한 루틴으로 분기 할 수 있는 명령으로 구성되어 있다. (Branch와 유사)
-        - <u>FIQ의 경우는 Vector Tabel의 맨 상위에 위치하여 분기명령 없이 처리루틴을 프로그램 할 수 있다.</u>
-    - ARM은 기본적으로 0x00000000에 Vector Tabel을 둔다.
+        - <u>FIQ의 경우는 Vector Table의 맨 상위에 위치하여 분기명령 없이 처리루틴을 프로그램 할 수 있다.</u>
+    - ARM은 기본적으로 0x00000000에 Vector Table을 둔다.
         - MMU 제어 프로그램에 의해 위치 변경 가능
 - Exception 우선순위
     - 동시에 Exception이 발생하는 경우 처리를 위해 우선 순위 지정 (사전에 fixed 되어 있음)
